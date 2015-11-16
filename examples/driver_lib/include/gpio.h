@@ -24,9 +24,14 @@
 
 #ifndef __GPIO_H__
 #define __GPIO_H__
+#include <espressif/esp8266/eagle_soc.h>
 
 #ifdef __cplusplus
 extern "C" {
+#endif
+
+#ifndef BIT
+#define BIT(X) (1<<(X))
 #endif
 
 #define GPIO_Pin_0              (BIT(0))  /* Pin 0 selected */

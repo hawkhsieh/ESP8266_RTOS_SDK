@@ -8,8 +8,6 @@ export SDK_PATH=~/esp_iot_sdk_freertos
 export BIN_PATH=~/esp8266_bin
 !
 
-export SDK_PATH=
-export BIN_PATH=
 
 echo "gen_misc.sh version 20150911"
 echo ""
@@ -173,4 +171,5 @@ echo ""
 
 make clean
 
+echo "make BOOT=$boot APP=$app SPI_SPEED=$spi_speed SPI_MODE=$spi_mode SPI_SIZE_MAP=$spi_size_map"
 make BOOT=$boot APP=$app SPI_SPEED=$spi_speed SPI_MODE=$spi_mode SPI_SIZE_MAP=$spi_size_map

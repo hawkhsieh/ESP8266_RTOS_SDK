@@ -32,6 +32,7 @@
 *******************************************************************************/
 void user_init(void)
 {
+while(1)
     printf("SDK version:%s\n", system_get_sdk_version());
 }
 

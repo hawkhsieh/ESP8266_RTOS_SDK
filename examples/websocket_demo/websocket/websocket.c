@@ -662,8 +662,8 @@ LOCAL void websocket_task(void *pvParameters)
 	struct station_config sta_config;
 	bzero(&sta_config, sizeof(struct station_config));
 
-	sprintf(sta_config.ssid, "B-LINK_845R");
-	sprintf(sta_config.password, "000");
+    sprintf(sta_config.ssid, "NETGEAR46");
+    sprintf(sta_config.password, "0973171371");
 	wifi_station_set_config(&sta_config);
 	os_printf("%s\n", __func__);
 	wifi_get_ip_info(STATION_IF, &ip_config);

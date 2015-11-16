@@ -28,7 +28,7 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 
-#include "uart.h"
+#include "esp/uart.h"
 
 enum {
     UART_EVENT_RX_CHAR,
@@ -396,7 +396,7 @@ uart0_rx_intr_handler(void *para)
         uart_intr_status = READ_PERI_REG(UART_INT_ST(uart_no)) ;
     }
 }
-
+#if 0
 void
 uart_init_new(void)
 {
@@ -433,3 +433,6 @@ uart_init_new(void)
     */
 
 }
+#endif
+
+

@@ -24,7 +24,7 @@
 
 #ifndef __UART_H__
 #define __UART_H__
-
+#include <espressif/esp8266/uart_register.h>
 #ifdef __cplusplus
 extern "C" {
 #endif

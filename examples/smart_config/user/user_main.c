@@ -93,6 +93,8 @@ smartconfig_task(void *pvParameters)
 void ICACHE_FLASH_ATTR
 user_init(void)
 {
+    uart_div_modify(0, UART_CLK_FREQ / 115200);
+
     printf("SDK version:%s\n", system_get_sdk_version());
 
     /* need to set opmode before you set config */

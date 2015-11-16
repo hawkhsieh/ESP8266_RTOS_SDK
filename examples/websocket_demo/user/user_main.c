@@ -34,7 +34,8 @@ char test_mode = 4;
 *******************************************************************************/
 void user_init(void)
 {
-    os_printf("SDK version:%s\n", system_get_sdk_version());
+    uart_div_modify(0, UART_CLK_FREQ / 115200);
+
     wifi_set_opmode(STATION_MODE);
     websocket_start(&test_mode);
 }
