@@ -50,3 +50,30 @@ void user_init(void)
     xTaskCreate(&http_get_task, (signed char *)"get_task", 1500 ,  NULL , 2, &xHandle );
 }
 
+
+
+
+#include "common_macros.h"
+#define _GPIO_TO_IOMUX { 12, 5, 13, 4, 14, 15, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3 }
+const IROM uint32_t GPIO_TO_IOMUX_MAP[] = _GPIO_TO_IOMUX;
+
+#include <esp/hwrand.h>
+#include <esp/wdev_regs.h>
+#include <string.h>
+
+/* Return a random 32-bit number */
+uint32_t hwrand(void)
+{
+    return WDEV.HWRNG;
+}
+
+/* Fill a variable size buffer with data from the Hardware RNG */
+void hwrand_fill(uint8_t *buf, size_t len)
+{
+    size_t i;
+    for(i = 0; i < len; i+=4) {
+        uint32_t random = WDEV.HWRNG;
+        /* using memcpy here in case 'buf' is unaligned */
+        memcpy(buf + i, &random, (i+4 <= len) ? 4 : (len % 4));
+    }
+}
