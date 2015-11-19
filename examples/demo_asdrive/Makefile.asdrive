@@ -23,7 +23,7 @@ endif
 #   makefile at its root level - these are then overridden
 #   for a subtree within the makefile rooted therein
 #
-DEFINES += -D__ESP8266__ -D__ESP8266__ESPRESSIF -DNO_shm
+DEFINES += -D__ESP8266__ -D__ESP8266__ESPRESSIF -DNO_shm -DDEBUG
 
 #############################################################
 # Recursion Magic - Don't touch this!!

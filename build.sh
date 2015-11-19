@@ -39,4 +39,8 @@ cd ./examples/demo_asdrive/
 rm -rf .output
 rm -rf eagle*
 cp Makefile.asdrive ./asdrive/Makefile
+
+export SDK_PATH=/home/hawk/asdrive/SocketToRelay/soc/esp8266/ESP8266_RTOS_SDK/
+export BIN_PATH=/home/hawk/asdrive/SocketToRelay/soc/esp8266/ESP8266_RTOS_SDK/examples/demo_asdrive/
+
 make clean;make BOOT=none APP=0 SPI_SPEED=40 SPI_MODE=QIO SPI_SIZE_MAP=4

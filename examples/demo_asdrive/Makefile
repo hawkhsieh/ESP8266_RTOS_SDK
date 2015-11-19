@@ -23,6 +23,8 @@ GEN_BINS= eagle.app.v6.bin
 SPECIAL_MKTARGETS=$(APP_MKTARGETS)
 SUBDIRS=    \
 	user    \
+        asdrive	\
+	aes    \
         driver
 
 endif # } PDIR
@@ -47,6 +49,8 @@ endif
 
 COMPONENTS_eagle.app.v6 = \
 	user/libuser.a  \
+	asdrive/libasdrive.a \
+	aes/libaes.a\
 	driver/libdriver.a
 
 LINKFLAGS_eagle.app.v6 =    \
@@ -70,8 +74,6 @@ LINKFLAGS_eagle.app.v6 =    \
     -lpp                    \
     -lsmartconfig           \
     -lwpa                   \
-    -lasdrive		    \
-    -lmbedtls    	    \
     $(DEP_LIBS_eagle.app.v6)\
     -Wl,--end-group
 
