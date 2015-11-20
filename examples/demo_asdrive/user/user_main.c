@@ -10,6 +10,8 @@
  * Additions Copyright (C) 2015 Angus Gratton, Apache 2.0 License.
  */
 #include "espressif/esp_common.h"
+#include "smartconfig.h"
+
 
 #include <string.h>
 
@@ -22,7 +24,7 @@
 
 #include "asdrive.h"
 #include "gpio.h"
-#include "smartconfig.h"
+#include "config/config.h"
 
 #define logprintf( fmt, args... ) \
     do {\
@@ -58,6 +60,9 @@ smartconfig_done(sc_status status, void *pdata)
             wifi_station_disconnect();
             wifi_station_connect();
 
+            Config_setSSID( sta_conf->ssid );
+            Config_setPassword( sta_conf->password );
+
             break;
         case SC_STATUS_LINK_OVER:
             logprintf("SC_STATUS_LINK_OVER\n");
@@ -88,20 +93,23 @@ user_init(void)
 
     logprintf("SDK:%s\n", system_get_sdk_version());
 
-#define SMART_CONFIG
-#if defined SMART_CONFIG
-    xTaskCreate( smartconfig_task, "smartconfig_task", 256 ,0,2,0 );
-#else
-    struct station_config config = {
-        .ssid = "NETGEAR46",
-        .password = "0973171371"
-    };
+    char *ssid = Config_getSSID();
+    if ( strlen(ssid) ){
 
-    printf("SSID:%s,PW:%s\n", config.ssid ,config.password);
+        char *pass = Config_getWifiPassword();
 
-    wifi_set_opmode(STATION_MODE);
-    wifi_station_set_config(&config);
-#endif
+        struct station_config config;
+        strcpy( config.ssid , ssid );
+        strcpy( config.password , pass);
+
+        printf("SSID:%s,PW:%s\n", config.ssid ,config.password);
+
+        wifi_set_opmode(STATION_MODE);
+        wifi_station_set_config(&config);
+
+    }else
+        xTaskCreate( smartconfig_task, "smartconfig_task", 256 ,0,2,0 );
+
     PIN_FUNC_SELECT(GPIO_PIN_REG_15, FUNC_GPIO15);
     PIN_FUNC_SELECT(GPIO_PIN_REG_13, FUNC_GPIO13);
     PIN_FUNC_SELECT(GPIO_PIN_REG_5, FUNC_GPIO5);
