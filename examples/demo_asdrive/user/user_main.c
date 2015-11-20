@@ -26,9 +26,8 @@
 
 #define logprintf( fmt, args... ) \
     do {\
-    char logbuf[128];       \
-    snprintf( logbuf ,sizeof(logbuf), "(%s:%d): " fmt , __FILE__ , __LINE__,##args);\
-    printf( "%s" , logbuf ); \
+    static const char flash_str[] ICACHE_RODATA_ATTR STORE_ATTR = "(%s:%d): " fmt;  \
+    printf( flash_str , __FILE__ , __LINE__,##args);\
     } while(0)
 
 

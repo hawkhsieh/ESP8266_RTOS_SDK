@@ -34,6 +34,7 @@ cp $asdrive_MAIN/SocketToRelay/md5encrypt/md5c.c $dest
 cp $asdrive_MAIN/SocketToRelay/string_utility/string_utility.c $dest
 cp $asdrive_MAIN/SocketToRelay/aes_encrypt/aes_encrypt.c $dest
 cp $asdrive_MAIN/SocketToRelay/soc/esp8266/syslog.c $dest
+cp $asdrive_MAIN/SocketToRelay/config/config.c $dest
 
 cd ./examples/demo_asdrive/
 rm -rf .output

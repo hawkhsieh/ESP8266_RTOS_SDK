@@ -51,6 +51,8 @@ void spiffs_fs1_init(void)
 
 void user_init(void)
 {
+    uart_div_modify(0, UART_CLK_FREQ / 115200);
+
     spiffs_fs1_init();
 
 	ssc_attach(SSC_BR_74880);
