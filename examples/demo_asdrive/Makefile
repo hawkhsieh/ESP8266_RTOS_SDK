@@ -119,7 +119,7 @@ DDEFINES +=				\
 # Required for each makefile to inherit from the parent
 #
 
-INCLUDES := $(INCLUDES) -I $(PDIR)include -I../asdrive/SocketToRelay/ -I../
+INCLUDES := $(INCLUDES) -I $(PDIR)include -I../asdrive  -I../asdrive/SocketToRelay/ -I../
 sinclude $(SDK_PATH)/Makefile
 
 .PHONY: FORCE

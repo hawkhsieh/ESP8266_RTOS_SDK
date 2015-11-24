@@ -32,7 +32,11 @@
 *******************************************************************************/
 void user_init(void)
 {
-while(1)
+    uart_div_modify(0, UART_CLK_FREQ / 115200);
+    printf("heap=%u\n", xPortGetFreeHeapSize());\
     printf("SDK version:%s\n", system_get_sdk_version());
+
+while(1)
+    vTaskDelay( 1000 / portTICK_RATE_MS);
 }
 

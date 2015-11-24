@@ -93,8 +93,13 @@ user_init(void)
 
     logprintf("SDK:%s\n", system_get_sdk_version());
 
+    PIN_FUNC_SELECT(GPIO_PIN_REG_15, FUNC_GPIO15);
+    PIN_FUNC_SELECT(GPIO_PIN_REG_13, FUNC_GPIO13);
+    PIN_FUNC_SELECT(GPIO_PIN_REG_5, FUNC_GPIO5);
+
     char *ssid = Config_getSSID();
-    if ( strlen(ssid) ){
+
+    if ( strlen(ssid) && GPIO_INPUT_GET(5) == 1){
 
         char *pass = Config_getWifiPassword();
 
@@ -110,12 +115,8 @@ user_init(void)
     }else
         xTaskCreate( smartconfig_task, "smartconfig_task", 256 ,0,2,0 );
 
-    PIN_FUNC_SELECT(GPIO_PIN_REG_15, FUNC_GPIO15);
-    PIN_FUNC_SELECT(GPIO_PIN_REG_13, FUNC_GPIO13);
-    PIN_FUNC_SELECT(GPIO_PIN_REG_5, FUNC_GPIO5);
-
     xTaskCreate( http_get_task, "get_task", 1500 ,0,0,0 );
-
+    xTaskCreate( start_http_server , "serv", 1024 ,0,0,0 );
 }
 
 
@@ -147,3 +148,4 @@ void hwrand_fill(uint8_t *buf, size_t len)
     }
 }
 #endif
+
