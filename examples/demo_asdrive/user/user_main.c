@@ -63,6 +63,9 @@ smartconfig_done(sc_status status, void *pdata)
             Config_setSSID( sta_conf->ssid );
             Config_setPassword( sta_conf->password );
 
+            Config_setDid( "" );
+            Config_setDevicePrivateKey( "" );
+
             break;
         case SC_STATUS_LINK_OVER:
             logprintf("SC_STATUS_LINK_OVER\n");
