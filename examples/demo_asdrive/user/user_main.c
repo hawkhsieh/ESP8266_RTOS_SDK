@@ -25,6 +25,9 @@
 #include "asdrive.h"
 #include "gpio.h"
 #include "config/config.h"
+#include "user_plug.h"
+
+LOCAL struct keys_param keys;
 
 #define logprintf( fmt, args... ) \
     do {\
@@ -120,6 +123,8 @@ user_init(void)
 
     xTaskCreate( http_get_task, "get_task", 1500 ,0,0,0 );
     xTaskCreate( start_http_server , "serv", 1024 ,0,0,0 );
+
+    user_plug_init();
 }
 
 
